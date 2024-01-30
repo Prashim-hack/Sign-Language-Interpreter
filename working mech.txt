@@ -1,0 +1,50 @@
+**Working Mechanism for "Handsign to Sentence"**
+
+	Initialization: Load a CSV file containing binary finger gesture mappings to characters.
+	Create a handDetector object using MediaPipe for hand tracking.
+
+	Video Capture: Continuously capture frames from the camera.
+
+	Hand Tracking: Use the handDetector to find hand landmarks and draw them on the video feed.
+	Identify finger positions to recognize binary finger gestures.
+
+	Gesture to Character Mapping: Map recognized gestures to characters using the loaded CSV file.
+
+	Build Recognized Sentence: Accumulate recognized characters to form a sentence.
+
+	Display on Screen: Display the video feed with hand landmarks, recognized characters, and a "Clear" button.
+
+	Clear Button: Clear the recognized sentence when the thumb and index finger touch the "Clear" button.
+
+	Exit: Exit the program by pressing any key.
+
+-----------------------------------------------------------------------------------------------------------------
+**Working Mechanism for "Sentence to Handsign"**
+
+	Conversion Functions:
+
+		char_to_binary(char): Converts an uppercase alphabetical character to a 5-bit binary representation.
+		get_number_system(user_char): Converts user's input character to binary and returns it as a list.
+
+	User Input Handling: separate_characters(word): Splits a string into a list of characters.
+
+	Serial Communication Setup: Initializes a SerialObject for communication with a device through a specified COM port.
+
+	Tkinter GUI: GUI includes a label, an entry widget for user input, and a submit button.
+
+	User Input Submission: submit_input method triggered on submit.
+
+
+
+-After the python code is executed, the data will be transferred to the servo motors through an arduino code, the working mechanism for this is:
+
+	servo Initialization: Five servo motors (servo1 to servo5) are initialized and attached to pins 8 to 12.
+
+	Serial Communication Setup: Serial.begin(9600) initializes serial communication with a baud rate of 9600.
+
+	Data Reception: The receivedata() function reads characters from the serial port and constructs a string until the 		end-marker ('$') is received. Once the end-marker is received, it extracts individual values and converts them to 	integers.
+
+	Servo Control: The loop() function continuously checks the received values and controls the servo motors accordingly.
+	For each servo, if the corresponding value is 1, the servo rotates to 180 degrees; otherwise, it rotates to 0 		degrees. Special handling for servo2 and servo4 includes a delay and returning to a neutral position after a half-	second 	delay.
+
+	Flags for Delay Control: Flags (flag1, flag2, flag11, flag22) are used to control delays and ensure smooth servo 	movements.
