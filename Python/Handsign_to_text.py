@@ -124,7 +124,7 @@ class handDetector():
         return length, img, [x1, y1, x2, y2, cx, cy]
 
 
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 detector = handDetector(maxHands=1, detectionCon=0.7)
 character_displayed = False
 recognized_sentence = ""
